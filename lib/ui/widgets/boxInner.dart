@@ -1,19 +1,23 @@
-import 'package:sudoku/ui/widgets/boxChar.dart';
+import 'package:sudoku/ui/widgets/cellCharacter.dart';
 
 class BoxInner {
   late int index;
-  List<BlokChar> blokChars = List<BlokChar>.from([]);
-  BoxInner(this.index, this.blokChars);
-  // declare method used |
+  List<CellCharacter> cellChars = List<CellCharacter>.from([]);
+
+  BoxInner(this.index, this.cellChars);
+
+  // declare method used
+
   setFocus(int index, Direction direction) {
-    List<BlokChar> temp;
+    //! blue color focus on row and column
+    List<CellCharacter> temp;
 
     if (direction == Direction.Horizontal) {
-      temp = blokChars
+      temp = cellChars
           .where((element) => element.index! ~/ 3 == index ~/ 3)
           .toList();
     } else {
-      temp = blokChars
+      temp = cellChars
           .where((element) => element.index! % 3 == index % 3)
           .toList();
     }
@@ -23,38 +27,36 @@ class BoxInner {
     }
   }
 
-  setExistvalue(
+  setExistValue(
       int index, int indexBox, String textInput, Direction direction) {
-    List<BlokChar> temp;
+    List<CellCharacter> temp;
+//! check is nu value exist in row and column and cell
     if (direction == Direction.Horizontal) {
-      temp = blokChars
+      temp = cellChars
           .where((element) => element.index! ~/ 3 == index ~/ 3)
           .toList();
     } else {
-      temp = blokChars
+      temp = cellChars
           .where((element) => element.index! % 3 == index % 3)
           .toList();
     }
-    if (index == indexBox) {
-      List<BlokChar> blokCharsBox =
-          blokChars.where((element) => element.text == textInput).toList();
-      if (blokCharsBox.length == 1 && temp.isEmpty) blokCharsBox.clear();
-      temp.addAll(blokCharsBox);
-    }
+
     temp.where((element) => element.text == textInput).forEach((element) {
       element.isExist = true;
     });
   }
 
-  clearfocus() {
-    for (var element in blokChars) {
-      element.isExist = false;
+  clearFocus() {
+    //!remove existing dark blue color from cell
+    for (var element in cellChars) {
+      element.isFocus = false;
     }
   }
 
   clearExist() {
-    for (var element in blokChars) {
-      element.isFocus = false;
+    //! remove existing blue color from row/column
+    for (var element in cellChars) {
+      element.isExist = false;
     }
   }
 }

@@ -17,7 +17,7 @@ class SudokuApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: const SudokuScreen(),
+      home: const SudokuWidget(),
     );
   }
 }

@@ -1,4 +1,4 @@
-class BlokChar {
+class CellCharacter {
   String? text;
   String? correctText;
   int? index;
@@ -6,7 +6,7 @@ class BlokChar {
   bool isCorrect;
   bool isDefault;
   bool isExist = false;
-  BlokChar(
+  CellCharacter(
     this.text, {
     this.index,
     this.isDefault = false,
